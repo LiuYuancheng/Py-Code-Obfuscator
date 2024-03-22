@@ -10,7 +10,7 @@
 
 The usage example is shown below :
 
-![](C:/Works/NCL/Project/Malware_Repo/src/pyObfuscator/doc/img/usageExample.png)
+![](doc/img/usageExample.png)
 
 ```
 # Created:     2024/03/21
@@ -38,7 +38,7 @@ We want to follow the idea of  [offree online tool's obfusaction tool](https://f
 
 The system work flow is shown below:
 
-![](C:/Works/NCL/Project/Malware_Repo/src/pyObfuscator/doc/img/sysWorkflow.png)
+![](doc/img/sysWorkflow.png)
 
 `version v0.1.2`
 
@@ -46,7 +46,7 @@ The system work flow is shown below:
 
 The Obfuscate Encoder page is shown below, to obfuscate a python function or program, copy the python source code in the source code text field, select the random contents append paymaster `randomLen` (0 ~ 100), each line of code will be append 16Bytes random sting * `randomLen` before do the Obfuscation encode. Press the "Run Obfuscation Encode" , the obfuscated code will show on the right result text field.
 
-![](C:/Works/NCL/Project/Malware_Repo/src/pyObfuscator/doc/img/encoderPage.png)
+![](doc/img/encoderPage.png)
 
 >  Remark: Every time use press the run button, it will generate the different obfuscated code result.
 
@@ -56,7 +56,7 @@ The Obfuscate Encoder page is shown below, to obfuscate a python function or pro
 
 Same as the encoder page, the decoder page is shown below. The user need to copy the  obfuscated code's bytes data (in the `exec()` function) in the left text field, then press the run decoder button to convert the obfuscated code back to source code. 
 
-![](C:/Works/NCL/Project/Malware_Repo/src/pyObfuscator/doc/img/decoderPage.png)
+![](doc/img/decoderPage.png)
 
 > Remark: If the user only want to source code, check the `remote the comments` check box. 
 
@@ -81,3 +81,31 @@ Here are some common techniques used in program obfuscation:
 7. **Anti-debugging techniques**: These are methods used to detect and prevent the program from being debugged, which can make it harder for attackers to analyze the code.
 
 It's important to note that while obfuscation can make reverse engineering more difficult, it's not a foolproof method for protecting software. Skilled attackers may still be able to reverse engineer obfuscated code given enough time and resources. Therefore, obfuscation is often used in conjunction with other security measures such as encryption, access control, and code signing. Additionally, obfuscated code can be harder to maintain and debug, so developers should weigh the benefits against the potential drawbacks before applying obfuscation techniques.
+
+
+
+------
+
+Project Design
+
+Program design:
+
+  """ Decode the obfuscate bytes back to source code.
+
+​    Args:
+
+​      data (bytes): obfuscated bytes data.
+
+​      removeCmt (bool, optional): flag to remove the random comments and empty line 
+
+​        of the result. Defaults to True.
+
+​    Returns:
+
+​      str: python code string
+
+  """
+
+
+
+Crete the executable obfuscated contents based on the random contents length.
