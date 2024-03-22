@@ -1,0 +1,93 @@
+{% extends 'mgmbase.html' %}
+
+{% block title %} Python Obfuscate Encoder {% endblock %}
+
+{% block style%} {% endblock %}
+
+{% block mgmContent %}
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <h3> Obfuscate <b class="text-success"> Encoder </b> </h3>
+    </li>
+
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-sm-6">
+                <form>
+                    <div id="content_2" style="display: block">
+                        <label for="contents"> <b> Copy the python source code in below text area : </b></label> <p></p>
+                        <code> Appended random len: </code> &nbsp
+                        <input id="randomLen" name="randomLen" type="number" min="0" step="1" data-bind="value:replyNumber" value="0" style="width: 10%;"> 
+                        &nbsp
+                        <button type="submit" class="btn btn-success btn-sm"> Run Obfuscation Encode</button>
+                        <p></p>
+                        <textarea class="form-control" style="font-family: monospace;" rows="25" id="codeContents" name="codeContents">print("hello world")# command line
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+
+                <label for="contents"> <b>Obfuscated result : </b> </label> <p></p>
+                <button  class="btn btn-primary btn-sm" onclick="copyCode()" > Copy Code </button>
+                &nbsp
+                <button  class="btn btn-warning btn-sm" onclick="cleanCode()" > Remove Code </button>
+                <form>
+                    <div id="content_3" style="display: block">
+                        <p></p>
+                        <textarea class="form-control" style="font-family: monospace;" rows="25" id="resultContents" name="resultContents", value="">def obfDecode(data): return __import__('zlib').decompress(__import__('base64').b64decode(data[::-1]))
+                            exec(obfDecode(b'==AIPEVNAEAwSVe5LxcyIH1SM3UzP7MSWRl0Rlkyv8MKXlcyNjkyQF9KMrMKrwJe'))
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<script>
+    $(document).ready(function() {
+       $('form').submit(function(event) {
+          event.preventDefault();
+          $.ajax({
+             type: 'POST',
+             url: '/encodesubmit',
+             data: $('form').serialize(),
+             //success: function() {
+               // $('#codeContents').val('');
+              //  alert('Form submitted!');
+             //}
+          });
+       });
+
+       var socket = io();
+       socket.on('connect', function () {
+        socket.emit('cli_request', { data: 'I\'m connected!' });
+        });
+
+        // Test response received from server is handled here
+        socket.on('encoderesult', function (msg) {
+            console.log(msg.data);
+            document.getElementById('resultContents').innerHTML = msg.data 
+            })
+    });
+
+    function copyCode() {
+        // Get the text field
+        var copyText = document.getElementById("resultContents");
+        copyText.select(); // Select the text field
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+      }
+
+      function cleanCode() {
+        // Get the text field
+        var copyText = document.getElementById("resultContents");
+        copyText.innerHTML=""
+      }
+
+ </script>
+
+{% endblock %}
