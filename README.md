@@ -1,6 +1,6 @@
 # Python Program Obfuscator
 
-![](C:/Works/NCL/Project/Malware_Repo/src/pyObfuscator/doc/img/logo_normal.png)
+![](doc/img/logo_normal.png)
 
 **Program design Purpose** : We want to create a python program obfuscation tool which can easily obfuscate encode the source code to be a bytes type executable python section for people who want to protect their intellectual property rights, or are running Python services with sensitive source code. It will also provide the decoder to convert the obfuscated bytes data back to the source code. The program contents 3 Part: 
 
@@ -106,6 +106,12 @@ Program design:
 
   """
 
+\# Purpose:   This module is the main web interface to call the obfuscator 
 
+\#        API to encode/decode the python program and use the socketIO
+
+\#        to update result. 
+
+\#
 
 Crete the executable obfuscated contents based on the random contents length.
