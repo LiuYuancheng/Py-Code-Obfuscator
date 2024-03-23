@@ -12,7 +12,7 @@ The usage example of the program obfuscation tool is shown below, the user can u
 
 ![](doc/img/usageExample.png)
 
-We also provide the Python-API for user to integrated the encoding and real-rime decoding & execution function into their program.
+We also provide the Python-API for user to integrated the encoding and real-rime decoding & execution function into their program. Video to show the detail usage : [link](https://youtu.be/2vG-mqkGg_4?si=keG-J5XppWxbxhtY)
 
 ```
 # Created:     2024/03/21
@@ -23,6 +23,24 @@ We also provide the Python-API for user to integrated the encoding and real-rime
 **Table of Contents**
 
 [TOC]
+
+- [Python Program Obfuscator](#python-program-obfuscator)
+    + [Introduction](#introduction)
+        * [Obfuscation Encoder Web UI](#obfuscation-encoder-web-ui)
+        * [Obfuscation Decoder Web UI](#obfuscation-decoder-web-ui)
+    + [Background Knowledge](#background-knowledge)
+    + [Project Design](#project-design)
+        * [Design of Encoding and Decoding](#design-of-encoding-and-decoding)
+    + [Program Setup](#program-setup)
+        * [Development Environment](#development-environment)
+        * [Additional Lib/Software Need](#additional-lib-software-need)
+        * [Hardware Needed : None](#hardware-needed---none)
+        * [Program Files List](#program-files-list)
+    + [Program Usage/Execution](#program-usage-execution)
+      - [Run the obfuscator via command interface](#run-the-obfuscator-via-command-interface)
+      - [Run the obfuscator via web interface](#run-the-obfuscator-via-web-interface)
+    + [Reference](#reference)
+    + [Problem and Solution](#problem-and-solution)
 
 ------
 
@@ -96,11 +114,11 @@ It's important to note that while obfuscation can make reverse engineering more 
 
 ### Project Design
 
-This section will combine with the contents in the precious background knowledge section to introduce the steps and technique applied in the obfuscation. 
+This section integrates with the background knowledge to elucidate the steps and techniques applied in the obfuscation process.
 
-**Design of Encoding and Decoding**  
+##### Design of Encoding and Decoding  
 
-As shown in the introduction program work flow diagram, the python source code file/string section will be encode with below steps, the python source code string will be encoded with the several steps to bytes data. Then wrapper with the decode header, to execute the byte, the wrapper will use the decode header to convert the bytes to string then pass in the python dynamic string code execution function `exec()` to run the code. The encode steps is shown below : 
+As depicted in the program workflow diagram provided in the introduction, the Python source code section undergoes encoding through a series of steps to convert the Python source code string into bytes data. Subsequently, it is encapsulated with a decode header. To execute the bytes data, the decode header is utilized to convert the bytes back into a string, which is then passed into the Python dynamic code execution function `exec()` for code execution. The encoding steps are outlined below:
 
 ```mermaid
 flowchart TD
@@ -152,7 +170,7 @@ These obfuscation techniques make the code difficult to understand, analyze, and
 The decoding progress reverse the encoding process with below steps:
 
 ```mermaid
-flowchart LR
+flowchart TD
 A[Obfuscated Bytes] --> |Reversed byte sequence| B
 B[Obfuscated encoded Bytes] --> |Base64 decode| C
 C[Obfuscated compressed code byte ] --> |'zlib' decompress|D
@@ -163,13 +181,13 @@ E[Python source code]
 
 Example Encoder Input : 
 
-```
+```python
 b'==Azg/E+Hk/eC9JOcaYt02SskKCJHfYu6ZVAPyhHdaUjsOse30tA1QP7d3nvW7U4eWbcNtHxmP4jG6VKRiMCbBNe1/8UHBxw7WSMdLdeA6vnz07MBSDeOxNd91GOps8hieqUrq+9QO8BIrlwh1me8uwTqOvK7qNLgbc/bAsiysVCPPfoDwOxAE+YpjwxPvGPaBCdTP2QWyRuO36o4GRlaf8NtENhd5Uzcz6VcBntUaz73kkqyNxjXKCvrqFH2Cy5pc12ydzjuIS2p2ERKLy1IA0LZdHllai3el3/e4VY40KhjXeZkjmtgMmJxAyQ4wDgWPWqXiNfywoHb2OWVBA442CkfaqknK/aDE4exCL2PGERtupfoaVAgikXMR/ZdA2NkxKhO19JWowZYU0I8GSzd7mwOI6S+6C8r4ZwVAj12P+t5OUnvkVvx1lxRGXFxyh8FaFglYml1iilkUBzBrsTI24q2VgoCr5bA1nvSNdY8hbXvZBRS05i9YWwlQGzbgB15Qlcnh6Wb0aYxUVMrT58MYXngucLlVZVvACQdIr2YTFBjwlN5aslybv/Pf/zeML/+4zvjs9x1v+P+97fe8rP+9867fe++3v++fuO6uloQpnGAp9n2CEh7cmhi43pvoPpZK5ThFO7GeeRQETHqtkk1xJe'
 ```
 
 Example Decode output:
 
-```
+```python
 print("hello world")
 ```
 
