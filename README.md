@@ -28,9 +28,9 @@ We also provide the Python-API for user to integrated the encoding and real-rime
 
 ### Introduction 
 
-Program obfuscation is a widely adopted common technique for enhancing the security of Python applications. There are various obfuscation libraries and tools exist in the market, such as [pyarm](https://pyarmor.readthedocs.io/en/latest/) or [offree online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator). The obfuscation process will employ methods such as identifier renaming, code encryption, code packing dead code insertion and so on, it effectively makes it difficult for hackers to understand the execution/control flow and safeguards sensitive source code from unauthorized access. But most of the current obfuscation tools don't provide the features like decoding algorithms, customization of obfuscation result size , or the selection of whether obfuscate entire/part of file.
+Program obfuscation is a widely adopted common technique for enhancing the security of Python applications. There are various obfuscation libraries and tools exist in the market, such as [pyarm](https://pyarmor.readthedocs.io/en/latest/) or [free online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator). The obfuscation process will employ methods such as identifier renaming, code encryption, code packing dead code insertion and so on, it effectively makes it difficult for hackers to understand the execution/control flow and safeguards sensitive source code from unauthorized access. But most of the current obfuscation tools don't provide the features like decoding algorithms, customization of obfuscation result size , or the selection of whether obfuscate entire/part of file.
 
-Inspired by the concept of [offree online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator), our goal is to develop a web-based Python program obfuscation tool with the following key features:
+Inspired by the concept of [free online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator), our goal is to develop a web-based Python program obfuscation tool with the following key features:
 
 - Provide multi-layer Python code obfuscation with customizable encoded obfuscated code sizes.
 - Provide provision of both encoder and decoder functions to facilitate maintenance and debugging of obfuscated code.
@@ -219,3 +219,47 @@ python pyObfuscator.py
 **Step2**: Select mode 0, then follow the step to input the python program need to be obfuscate, the obfuscated code will be saved in file `obfuscateCode.py` , the user can change the file's name and replace the original file.
 
 ![](doc/img/consoleRun.png)
+
+
+
+#### Run the obfuscator via web interface 
+
+**Step1**: Run the web host program via command: 
+
+```
+python pyObfuscatorApp.py
+```
+
+**Step2**: Open browser type in the URL: http://127.0.0.1:5000/
+
+![](doc/img/HomePage.png)
+
+**Step3**: Select the `Obfuscation Encoder` from the left guide menu, and follow the below steps to obfuscate the source code:
+
+![](doc/img/useEncoder.png)
+
+**Step4**: Select the `Obfuscation decoder` from the left guide menu, and follow the below steps to get the source code:
+
+![](doc/img/useDecoder.png)
+
+
+
+------
+
+### Reference 
+
+- **pyarm**: https://pyarmor.readthedocs.io/en/latest/ 
+
+- **free online tool's obfuscation tool**: https://freecodingtools.org/py-obfuscator
+
+
+
+------
+
+### Problem and Solution
+
+Refer to `doc/ProblemAndSolution.md`
+
+------
+
+> Last edit by LiuYuancheng(liu_yuan_cheng@hotmail.com) at 21/03/2024, if you have any problem please free to message me.

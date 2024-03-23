@@ -8,7 +8,7 @@
 #
 # Author:      Yuancheng Liu
 #
-# Created:     2024/03/02
+# Created:     2024/03/21
 # version:     v0.1.2
 # Copyright:   Copyright (c) 2024 LiuYuancheng
 # License:     MIT License    
@@ -90,6 +90,12 @@ def decodesubmit():
     #print("removeCmt: [%s]" %str(checkbox_value))
     socketio.emit('decoderesult', {'data': reusltCode})
     return 'Python source code obfuscation decoded.'
+
+@app.route('/usagemanual')
+def usagemanual():
+    """ route to introduction index page."""
+    posts = {'page': 3} # page index is used to highlight the left page slide bar.
+    return render_template('usagemanual.html', posts=posts)
 
 #-----------------------------------------------------------------------------
 # socketIO communication handling functions. 
