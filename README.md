@@ -2,17 +2,17 @@
 
 ![](doc/img/logo_mid.png)
 
-**Program Design Purpose**: The project main objective is to develop a multiplatform Python program obfuscation tool which can easily safeguard the source code for the people who want to protect their intellectual property rights or manage their sensitive software algorithm.  This tool will seamlessly obfuscate and encode the sensitive source code into unreadable but Python-interpreter executable bytes data which can be mixed executed with normal python code. Additionally, it will offer a decoder to revert obfuscated byte data back to its original source code. The program comprises three main components:
+**Program Design Purpose**: The project main objective is to develop a multiplatform Python program obfuscation tool which can easily safeguard the source code for the people who wants to protect their intellectual property rights or manage their software  sensitive algorithm.  This tool will seamlessly obfuscate and encode the source code into unreadable but Python-interpreter executable bytes data which can be mixed executed with normal python program. Additionally, it will offer a decoder to revert obfuscated byte data back to its original source code. The program comprises three main components:
 
-- **Obfuscation Encoder** :  This component encrypts the Python source code, whether it's an entire file or a specific section, rendering it unreadable as byte data, then embed an execution header o create the executable but unreadable python program/section.
-- **Obfuscation Decoder** : The decoder is designed to reverse the encoding process, this decoder transforms obfuscated byte data back into its original Python code, ensuring ease of readability and accessibility.
+- **Obfuscation Encoder** :  This component encrypts the Python source code, whether it's an entire file or a specific section, rendering it unreadable as bytes data, then embed an execution header to create the executable but unreadable python program/section.
+- **Obfuscation Decoder** : The decoder is designed to reverse the encoding process, this decoder transforms obfuscated bytes data back into its original Python code, ensuring ease of readability and accessibility.
 - **Service Web Interface** : Provide a user-friendly web interface for the user to easily encoding and decoding of Python programs. 
 
-The usage example of the program obfuscation tool is shown below, the user can use encoder to obfuscate the online code `print("hello world")` to unreadable code bytes, then use the decoder to covert it back:  
+The usage example of the program obfuscation tool is shown below, the user can use encoder to obfuscate the one line code `print("hello world")` to unreadable code bytes, then use the decoder to covert it back:  
 
 ![](doc/img/usageExample.png)
 
-We also provide the Python-API for user to integrated the encoding and real-rime decoding & execution function into their program. Video to show the detail usage : [link](https://youtu.be/2vG-mqkGg_4?si=keG-J5XppWxbxhtY)
+We also provide the Python-API for user to integrated the encoding and real-time decoding & execution function into their program. Video to show the detail usage : [link](https://youtu.be/2vG-mqkGg_4?si=keG-J5XppWxbxhtY)
 
 ```
 # Created:     2024/03/21
@@ -46,11 +46,11 @@ We also provide the Python-API for user to integrated the encoding and real-rime
 
 ### Introduction 
 
-Program obfuscation is a widely adopted common technique for enhancing the security of Python applications. There are various obfuscation libraries and tools exist in the market, such as [pyarm](https://pyarmor.readthedocs.io/en/latest/) or [free online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator). The obfuscation process will employ methods such as identifier renaming, code encryption, code packing dead code insertion and so on, it effectively makes it difficult for hackers to understand the execution/control flow and safeguards sensitive source code from unauthorized access. But most of the current obfuscation tools don't provide the features like decoding algorithms, customization of obfuscation result size , or the selection of whether obfuscate entire/part of file.
+Program obfuscation is a widely adopted common technique for enhancing the security of Python applications. There are various obfuscation libraries and tools exist in the market, such as [pyarm](https://pyarmor.readthedocs.io/en/latest/) or [free online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator). The obfuscation process will employ methods such as `identifier renaming`, `code encryption`, `code packing`,  `dead code insertion` and so on, it effectively makes it difficult for hackers to understand the program execution/control flow and safeguards sensitive source code from unauthorized access. But most of the current obfuscation tools don't provide the features like `decoding algorithms`, `customization of obfuscation result size` , or the `selection of whether obfuscate entire/part of file`.
 
-Inspired by the concept of [free online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator), our goal is to develop a web-based Python program obfuscation tool with the following key features:
+Inspired by the concept of this [free online tool's obfuscation tool](https://freecodingtools.org/py-obfuscator), our goal is to develop a web-based Python program obfuscation tool with the following key features:
 
-- Provide multi-layer Python code obfuscation with customizable encoded obfuscated code sizes.
+- Provide multi-layer Python code obfuscation with customizable encoded obfuscated code sizes configuration.
 - Provide provision of both encoder and decoder functions to facilitate maintenance and debugging of obfuscated code.
 - Provide capability to obfuscate entire Python programs or specific sections of source code for added flexibility.
 - Integration of flexible code randomization techniques to ensure that each generated obfuscated code is unique, even when derived from the same source code.
@@ -132,7 +132,7 @@ H[Execution header and wrapper code] --> G
 G[Obfuscated executable python code]
 ```
 
-Example Encoder Input : 
+Example encoder source code input : 
 
 ```python
 import os
@@ -149,16 +149,16 @@ print("Current source code location : %s" % dirpath)
 print("Hello world")
 ```
 
-Example Encoder Output: 
+Example encoder obfuscated code output: 
 
 ```python
 def obfDecode(data): return __import__('zlib').decompress(__import__('base64').b64decode(data[::-1]))
 exec(obfDecode(b'kDMA2910OfmOY0xz1Jeq1cjF1JMlFPYhZCtLm5r5V0c3LyNFMwBmnV7YF3hnto2YOMsfrKkvLSzKTp1tL3je1dP+R8t2mH74DVtheP0G1EUMVMnsRP3APWbRcAfFkilrWTbnlp3ttZVjhXcluBz5GOMb/UlK2UKJRzbbUXHe7DKL65v/y/trHOP3hfqE83kkRwle1v6OSgbVVAT7CZvvXGXWa6u6wBXjGgHPV02VULPoNfXFUXRCUxN11+ZFIxbON+t67wffylf9V3/xKJxHbe96nWPH/3aBwKW0e9GFl5DlK4zJUCSNqnhxlGpiCVNIKCHTC2uuOvPgUNLjQXiOJWJbRbEnW/YfrDQrsX9eUPX+tT4w6hx10UIIG2U7zcC2maRyDUhYcjeEeMOVjqHUR/aZTjtcVuOJ0GjIzrjqdau0yCup99y2Hov6/TZyKf/JPXmd1M+6IMyrPBpVuw8uBVYW72TRSDh1o1F2OuFvl05d1HhzjFYOuiuSqq+58tbop9aXeMV/lzj02klznW10GVcXSYESwFoLEcLoStyQaVw72AYC9UNEqEhvYgvGJizlmu1QsDmIhOcq1M3ViI2UV9/6Hrf55PtrZWqMfX0CF3YFPWI20OQmE4FjWKTHwduZ+wMzweDKqrBNbhWwj6GL6srBRXvVZvVAiyV+WNUAs8n3u/uPlbv7u/Ok6/4vU9jPP+1Dyme57KhvsRITjAGw1AakCa8M+oVb7C7IZ0pRFn8xyVdXmJRlRwoduC6hR/cuwBZUHCjScdDhB4I0G81XqP+/PIvAGmFho19mLzJCyZ94+m1k7trz3/QUzBQ0h0oJhbaeEOhzrBm15OrFoXuiATAG3TpdTH0Jqud75vO/97ffXQsSeG7Az9GP55p5moVcW4AZxQt+3pDQtfJeYVwSU3kh6jJNyuApFffdvFQdytMKCJGO9OLnjnWf+fPe3uvPzFO852U+Vnu58HP/pX+8P3+6nT/tukz8xX+x2X/2zH123+6pV7O/4Lf7Ln+492o77mrhGcdXegy4lyiNQJnIiRrIqRx9Vf+eJTdEbR0B1yoxwskbtt7SYIWLoujaBPnJYb+oGzH+5/wDvmN5rd68rP9g1gmsgROkfKzZgg/k0ZjoPgwZmWzkwtXgZCngFcnu1eKchFyUMpbHjJgR3QGnL6IKemRn6JX/+4Lf2X/yhXe0ff0RK9Hc5urkwNBs3d02Jz4ZmO9Mmw5roHzbmIvsZUSVKlKGejtxGfYeNcfhMcEXK2Ml1xJe'))
 ```
 
-The obfuscation used in the obfuscation encode: 
+The obfuscation technique used in the obfuscation encoding process: 
 
-1. **Bytes reversal**: The result data bytes are reversed to make reversed code harder to understand at a glance and requires reversing it before interpreting it correctly.
+1. **Bytes reversal**: The result data bytes array are reversed to make reversed code harder to understand at a glance and requires reversing it before interpreting it correctly.
 2. **Randomization**: The encode function adds a random string of specified length to each line before obfuscation. This adds further complexity and randomness to the obfuscated code.
 3. **Dynamic import**: The obfuscated code uses `__import__()` to dynamically import modules (`zlib` and `base64`). This technique hides the imports, making it less obvious what modules are being used.
 4. **String manipulation**: The encode process  removes comments, static strings and empty lines from the code to make the code becomes more difficult to understand and analyze.
@@ -179,13 +179,13 @@ E[Python source code]
 
 ```
 
-Example Encoder Input : 
+Example decoder obfuscated bytes input : 
 
 ```python
 b'==Azg/E+Hk/eC9JOcaYt02SskKCJHfYu6ZVAPyhHdaUjsOse30tA1QP7d3nvW7U4eWbcNtHxmP4jG6VKRiMCbBNe1/8UHBxw7WSMdLdeA6vnz07MBSDeOxNd91GOps8hieqUrq+9QO8BIrlwh1me8uwTqOvK7qNLgbc/bAsiysVCPPfoDwOxAE+YpjwxPvGPaBCdTP2QWyRuO36o4GRlaf8NtENhd5Uzcz6VcBntUaz73kkqyNxjXKCvrqFH2Cy5pc12ydzjuIS2p2ERKLy1IA0LZdHllai3el3/e4VY40KhjXeZkjmtgMmJxAyQ4wDgWPWqXiNfywoHb2OWVBA442CkfaqknK/aDE4exCL2PGERtupfoaVAgikXMR/ZdA2NkxKhO19JWowZYU0I8GSzd7mwOI6S+6C8r4ZwVAj12P+t5OUnvkVvx1lxRGXFxyh8FaFglYml1iilkUBzBrsTI24q2VgoCr5bA1nvSNdY8hbXvZBRS05i9YWwlQGzbgB15Qlcnh6Wb0aYxUVMrT58MYXngucLlVZVvACQdIr2YTFBjwlN5aslybv/Pf/zeML/+4zvjs9x1v+P+97fe8rP+9867fe++3v++fuO6uloQpnGAp9n2CEh7cmhi43pvoPpZK5ThFO7GeeRQETHqtkk1xJe'
 ```
 
-Example Decode output:
+Example decoder source code output:
 
 ```python
 print("hello world")
@@ -228,13 +228,13 @@ We offer two interfaces for users to utilize the program: a console command inte
 
 #### Run the obfuscator via command interface
 
-**Step1**: Run the command interface program via command: 
+**Step1**: Run the  program via command: 
 
 ```
 python pyObfuscator.py
 ```
 
-**Step2**: Select mode 0, then follow the step to input the python program need to be obfuscate, the obfuscated code will be saved in file `obfuscateCode.py` , the user can change the file's name and replace the original file.
+**Step2**: Select mode 0, then follow the steps to input the python program need to be obfuscate, the obfuscated code will be saved in file `obfuscateCode.py` , then user can change the file's name and replace the original file.
 
 ![](doc/img/consoleRun.png)
 
