@@ -9,16 +9,15 @@
 # Author:      Yuancheng Liu
 #
 # Created:     2024/03/21
-# version:     v0.1.2
+# version:     v0.1.3
 # Copyright:   Copyright (c) 2024 LiuYuancheng
 # License:     MIT License    
 #-----------------------------------------------------------------------------
 import os
 import threading
+import pyObfuscator as obfuscate
 
-import pyObfuscator as obfscate
-
-from flask import Flask, render_template, flash, redirect, url_for, request
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit # pip install Flask-SocketIO==5.3.5
 
 DEBUG_MD = False 
@@ -67,7 +66,7 @@ def encodesubmit():
     if DEBUG_MD:
         print("code: %s" % str(code))
         print("randomLen: %s" % str(randomLen))
-    ofsCode = obfscate.getObfuscatedCode(code, randomLen=randomLen)
+    ofsCode = obfuscate.getObfuscatedCode(code, randomLen=randomLen)
     socketio.emit('encoderesult', {'data': ofsCode})
     return 'Python source code obfuscation encoded.'
 
@@ -86,7 +85,7 @@ def decodesubmit():
     removCmtFlg = False if checkboxVal is None else True
     if str(code).startswith("b'"): code = str(code)[2:]
     if str(code).endswith("'"):code = str(code)[:-1]
-    reusltCode = obfscate.obfDecode(code.encode('utf-8'), removeCmt=removCmtFlg)
+    reusltCode = obfuscate.obfDecode(code.encode('utf-8'), removeCmt=removCmtFlg)
     #print("removeCmt: [%s]" %str(checkbox_value))
     socketio.emit('decoderesult', {'data': reusltCode})
     return 'Python source code obfuscation decoded.'

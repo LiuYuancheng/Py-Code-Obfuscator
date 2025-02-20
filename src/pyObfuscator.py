@@ -3,27 +3,27 @@
 #
 # Purpose:     This module will provide a simplified Python obfuscation encode and 
 #              decode function to secure and protect the source code, the obfuscate 
-#              encode method uses 3 layers obfuscation technque to makes it difficult 
+#              encode method uses 3 layers obfuscation technology to makes it difficult 
 #              for hackers to gain access to your sensitive source code. 
 #
 # Author:      Yuancheng Liu
 #
-# Version:     v_0.1.2
+# Version:     v_0.1.3
 # Created:     2024/03/21
 # Copyright:   Copyright (c) 2023 LiuYuancheng
 # License:     MIT License
 #-----------------------------------------------------------------------------
 """ Program design:
     This module follow the idea in the link:[ https://freecodingtools.org/py-obfuscator#:
-    ~:text=A%20Python%20obfuscator%20is%20a,to%20your%20sensitive%20source%20code] and 
-    alog in the pyarmor obfuscation lib[https://pyarmor.readthedocs.io/en/latest/] to 
+    ~:text=A%20Python%20obfuscator%20is%20a,to%20your%20sensitive%20source%20code] and the
+    algo in the pyarmor obfuscation lib[https://pyarmor.readthedocs.io/en/latest/] to 
     obfuscate a normal python program (section) with the compress and base64 encode lib.
 
     Usage steps:
-        1. Run the program with input test mode 0
-        2. Type in the python source code program file name/path
-        3. Set the random contents insertion paramter number
-        4. The obfuscated code will be saved in the file <obfuscateCode.py>
+        1. Run the program with input test mode 0.
+        2. Type in the python source code program file name/path.
+        3. Set the random contents insertion parameter number.
+        4. The obfuscated code will be saved in the file <obfuscateCode.py>.
 """
 import zlib
 import uuid
@@ -35,18 +35,18 @@ CODE_HEADER = """def obfDecode(data): return __import__('zlib').decompress(__imp
 #-----------------------------------------------------------------------------
 def getRemoveCmtCode(codeStr):
     """ Remove the comments section in the input code. """
-    codeConetent = ''
+    codeContent = ''
     for line in codeStr.split('\n'):
         # Removing the comments from the decoded data
         line = line.split("#")[0]
         # Removing the empty lines from the decoded data
         if line.strip() != "":
             # Adding the original encoded data to the output list
-            codeConetent += line+'\n'
-    return codeConetent
+            codeContent += line+'\n'
+    return codeContent
 
 #-----------------------------------------------------------------------------
-def obfEecode(data, removeCmt=True):
+def obfEncode(data, removeCmt=True):
     """ Obfuscate encode the input python source code.
         Args:
             data (str): python source code string.
@@ -54,11 +54,11 @@ def obfEecode(data, removeCmt=True):
         Returns(bytes): obfuscated encoded bytes data or None if input is invalid. 
     """
     if isinstance(data, str):
-        codeConetent = getRemoveCmtCode(data) if removeCmt else data
-        reversedData = base64.b64encode(zlib.compress(codeConetent.encode('utf-8'))).decode()[::-1]
+        codeContent = getRemoveCmtCode(data) if removeCmt else data
+        reversedData = base64.b64encode(zlib.compress(codeContent.encode('utf-8'))).decode()[::-1]
         return reversedData.encode('utf-8')
     else:
-        print("Error: obfEecode() > The input data need to be str() type.")
+        print("Error: obfEncode() > The input data need to be str() type.")
         return None 
 
 #-----------------------------------------------------------------------------
@@ -75,8 +75,8 @@ def obfDecode(data, removeCmt=True):
         # Reversing the input string to get the original encoded data
         decompressedData = zlib.decompress(base64.b64decode(data[::-1]))
         codeData = decompressedData.decode('utf-8')
-        codeConetent = getRemoveCmtCode(codeData) if removeCmt else codeData
-        return codeConetent
+        codeContent = getRemoveCmtCode(codeData) if removeCmt else codeData
+        return codeContent
     else:
         print("Error: obfDecode() > the input data need to be a bytes() type value.")
         return None 
@@ -85,14 +85,14 @@ def obfDecode(data, removeCmt=True):
 def executeObfuscateCode(obfBytes, debug=False):
     """ Execute the input obfuscated code bytes.
         Args:
-            obfBytes (bytes): obfusedated bytes data.
+            obfBytes (bytes): obfuscated bytes data.
             debug (bool, optional): flag to identify whether show the execution result. 
                 Defaults to False.
     """
     codeCode = obfDecode(obfBytes)
     if codeCode is None: return None
     try:
-        if debug: print("Start to execude the code: %s " %str(codeCode))
+        if debug: print("Start to execute the code: %s " %str(codeCode))
         rst = exec(codeCode)
         return rst
     except Exception as err:
@@ -118,7 +118,7 @@ def getObfuscatedCode(codeStr, randomLen=0):
                 newCodeContents += '''\n'''
         else:
             newCodeContents = codeStr
-        exeStr = str(obfEecode(newCodeContents, removeCmt=False))
+        exeStr = str(obfEncode(newCodeContents, removeCmt=False))
         exeStr = """exec(obfDecode(%s))""" % exeStr if exeStr.startswith('b') else """exec(obfDecode(b'%s'))""" % exeStr
         return CODE_HEADER + '\n' + exeStr + '\n'
     else:
@@ -148,9 +148,9 @@ def testCase(mode):
             print("Input file not exist or file type not match.")
     elif mode == 1:
         print("Test Case1: obfuscate encode and decode test")
-        ecodeData = obfEecode(testCodeStr)
-        print("Encoded data: %s" %str(ecodeData))
-        decodeData = obfDecode(ecodeData)
+        encodeData = obfEncode(testCodeStr)
+        print("Encoded data: %s" %str(encodeData))
+        decodeData = obfDecode(encodeData)
         print("Decoded source: %s" %str(decodeData))
         exec(decodeData)
         if decodeData == getRemoveCmtCode(testCodeStr):
@@ -159,9 +159,9 @@ def testCase(mode):
             print("- Failed.")
     elif mode == 2:
         print("Test Case2: obfuscate encode and execute")
-        ecodeData = obfEecode(testCodeStr)
-        print("Execute the encoded data: %s" %str(ecodeData))
-        result = executeObfuscateCode(ecodeData)
+        encodeData = obfEncode(testCodeStr)
+        print("Execute the encoded data: %s" %str(encodeData))
+        result = executeObfuscateCode(encodeData)
         print(result)
     elif mode == 3:
         print("Test Case3: generate executable obfuscate code")

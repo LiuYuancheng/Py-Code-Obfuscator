@@ -12,10 +12,13 @@ The usage example of the program obfuscation tool is shown below, the user can u
 
 ![](doc/img/usageExample.png)
 
+`Figure 00: Code obfuscation encode and decode example, version v_0.1.3 (2025)`
+
 We also provide the Python-API for user to integrated the encoding and real-time decoding & execution function into their program. Video to show the detail usage : [link](https://youtu.be/2vG-mqkGg_4?si=keG-J5XppWxbxhtY)
 
 ```
 # Created:     2024/03/21
+# Version:     v_0.1.3
 # Copyright:   Copyright (c) 2024 LiuYuancheng
 # License:     MIT License
 ```
@@ -60,7 +63,7 @@ The obfuscation tool work flow is shown below:
 
 ![](doc/img/sysWorkflow.png)
 
-`version v0.1.2`
+`Figure 01: Code obfuscation encode and decode work flow, version v_0.1.3 (2025)`
 
 ##### Obfuscation Encoder Web UI
 
@@ -69,6 +72,8 @@ The Obfuscate Encoder page is shown below. To obfuscate a Python function or pro
 > Obfuscation encoder web page view : 
 
 ![](doc/img/encoderPage.png)
+
+`Figure 02: Code obfuscation webApp encoder screen shot, version v_0.1.3 (2025)`
 
 Upon pressing the "Run Obfuscation Encode" button, the obfuscated code will appear in the result text field on the right. Press the copy code button then paste the obfuscated code to your program to execute.
 
@@ -83,6 +88,8 @@ Similar to the encoder page, the decoder page is displayed below. Users are requ
 > Obfuscation decoder web page view : 
 
 ![](doc/img/decoderPage.png)
+
+`Figure 03: Code obfuscation webApp decoder screen shot, version v_0.1.3 (2025)`
 
 > Note: If users prefer to obtain the source code without comments, they can check the "Remove the comments" checkbox.
 
@@ -238,7 +245,7 @@ python pyObfuscator.py
 
 ![](doc/img/consoleRun.png)
 
-
+`Figure 03: obfuscator test case usage screen shot, version v_0.1.3 (2025)`
 
 #### Run the obfuscator via web interface 
 
@@ -252,13 +259,19 @@ python pyObfuscatorApp.py
 
 ![](doc/img/HomePage.png)
 
+`Figure 04: Code obfuscation webApp introduction page screen shot, version v_0.1.3 (2025)`
+
 **Step3**: Select the `Obfuscation Encoder` from the left guide menu, and follow the below steps to obfuscate the source code:
 
 ![](doc/img/useEncoder.png)
 
+`Figure 05: Code obfuscation webApp encoder usage steps, version v_0.1.3 (2025)`
+
 **Step4**: Select the `Obfuscation decoder` from the left guide menu, and follow the below steps to get the source code:
 
 ![](doc/img/useDecoder.png)
+
+`Figure 05: Code obfuscation webApp decoder usage steps, version v_0.1.3 (2025)`
 
 
 
@@ -266,9 +279,9 @@ python pyObfuscatorApp.py
 
 ### Reference 
 
-- **pyarm**: https://pyarmor.readthedocs.io/en/latest/ 
+- **Pyarmor **: https://pyarmor.readthedocs.io/en/latest/ 
 
-- **free online tool's obfuscation tool**: https://freecodingtools.org/py-obfuscator
+- **Free online tool's obfuscation tool**: https://freecodingtools.org/py-obfuscator
 
 
 
@@ -280,4 +293,5 @@ Refer to `doc/ProblemAndSolution.md`
 
 ------
 
-> Last edit by LiuYuancheng(liu_yuan_cheng@hotmail.com) at 21/03/2024, if you have any problem please free to message me.
+> Last edited by LiuYuancheng (liu_yuan_cheng@hotmail.com) at 20/02/2025, if you have any question please free to message me.
+
