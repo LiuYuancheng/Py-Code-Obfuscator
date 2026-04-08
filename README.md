@@ -1,5 +1,7 @@
 # Python Program Obfuscator
 
+**us English** | [cn 中文](Readme_CN.md)
+
 ![](doc/img/logo_mid.png)
 
 **Program Design Purpose**: The project main objective is to develop a multiplatform Python program obfuscation tool which can easily safeguard the source code for the people who wants to protect their intellectual property rights or manage their software  sensitive algorithm.  This tool will seamlessly obfuscate and encode the source code into unreadable but Python-interpreter executable bytes data which can be mixed executed with normal python program. Additionally, it will offer a decoder to revert obfuscated byte data back to its original source code. The program comprises three main components:
@@ -16,7 +18,8 @@ The usage example of the program obfuscation tool is shown below, the user can u
 
 We also provide the Python-API for user to integrated the encoding and real-time decoding & execution function into their program. Video to show the detail usage : [link](https://youtu.be/2vG-mqkGg_4?si=keG-J5XppWxbxhtY)
 
-```
+```python
+# Author:      Yuancheng Liu
 # Created:     2024/03/21
 # Version:     v_0.1.3
 # Copyright:   Copyright (c) 2024 LiuYuancheng
